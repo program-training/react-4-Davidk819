@@ -1,29 +1,47 @@
-import React, { createContext, useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { createContext, useEffect, useState } from "react";
+import axios from "axios";
 
-type User = string;
+interface User {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+  address: {
+    street: string;
+    suite: string;
+    city: string;
+    zipcode: string;
+    geo: {
+      lat: string;
+      lng: string;
+    };
+  };
+}
+interface Props {
+  children: React.ReactNode;
+}
 
 export const UserContext = createContext<User | null>(null);
 
-export default function UserContextProvider {
-  const [user, setUser] = useState(null);
+export default function UserContextProvider(props: Props) {
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    // בטעינת הרנדומליות מה-URL
-    axios.get('https://jsonplaceholder.typicode.com/users')
-      .then(response => {
-        // בחירת משתמש רנדומלי מהמערך שקיבלנו
-        const randomUser = response.data[Math.floor(Math.random() * response.data.length)];
+    axios
+      .get("https://jsonplaceholder.typicode.com/users")
+      .then((response) => {
+        const randomUser =
+          response.data[Math.floor(Math.random() * response.data.length)];
         setUser(randomUser);
       })
-      .catch(error => {
-        console.error('Error fetching user data:', error);
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
       });
-  }, []); // הפעל את ה-Effect פעם אחת כאשר הרכיב מתרנדר לראשונה
+  }, []); 
 
   return (
     <UserContext.Provider value={user}>
-      {children}
+        {props.children}
     </UserContext.Provider>
-  );
-};
+    );
+}
