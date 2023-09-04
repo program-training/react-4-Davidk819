@@ -15,7 +15,6 @@ export default function ThemeSwitcher() {
 
     return (
         <div>
-            {mode}
             <button onClick={change}>{buttonText}</button>
         </div>
     );

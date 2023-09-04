@@ -1,0 +1,15 @@
+.light{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    background-color: aliceblue;
+    color: black;
+}
+.dark{
+    background-color: black;
+    color: azure;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}

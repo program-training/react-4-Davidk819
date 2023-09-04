@@ -10,7 +10,6 @@ export default function Title(props:Props) {
     if(!context) return null
     const {mode} = context
 
-    const [myClass, setClass] = useState("title-container")
 
   return (
     

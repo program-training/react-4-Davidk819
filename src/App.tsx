@@ -6,15 +6,16 @@ import ThemeSwitcher from "./components/ThemeSwitcher/ThemeSwitcher";
 import Title from "./components/Title/Title";
 import Header from "./components/Header/Header";
 import UserContextProvider from "./components/UserContext/UserContext";
+import Main from "./components/Main/Main";
 
 function App() {
   return (
     <>
-      <ThemeProvider>
-        <UserContextProvider>
-          <Header></Header>
-        </UserContextProvider>
-      </ThemeProvider>
+      <UserContextProvider>
+        <ThemeProvider>
+          <Main></Main>
+        </ThemeProvider>
+      </UserContextProvider>
     </>
   );
 }
